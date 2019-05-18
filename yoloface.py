@@ -67,7 +67,7 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
 def _main():
     wind_name = 'face detection using YOLOv3'
-    cv2.namedWindow(wind_name, cv2.WINDOW_NORMAL)
+    # cv2.namedWindow(wind_name, cv2.WINDOW_NORMAL)
 
     output_file = ''
 
@@ -122,14 +122,14 @@ def _main():
         print('#' * 60)
 
         # initialize the set of information we'll displaying on the frame
-        info = [
-            ('number of faces detected', '{}'.format(len(faces)))
-        ]
+        # info = [
+        #     ('number of faces detected', '{}'.format(len(faces)))
+        # ]
 
-        for (i, (txt, val)) in enumerate(info):
-            text = '{}: {}'.format(txt, val)
-            cv2.putText(frame, text, (10, (i * 20) + 20),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, COLOR_RED, 2)
+        # for (i, (txt, val)) in enumerate(info):
+        #     text = '{}: {}'.format(txt, val)
+        #     cv2.putText(frame, text, (10, (i * 20) + 20),
+        #                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, COLOR_RED, 2)
 
         # Save the output video to file
         if args.image:
@@ -137,15 +137,15 @@ def _main():
         else:
             video_writer.write(frame.astype(np.uint8))
 
-        cv2.imshow(wind_name, frame)
+        # cv2.imshow(wind_name, frame)
 
-        key = cv2.waitKey(1)
-        if key == 27 or key == ord('q'):
-            print('[i] ==> Interrupted by user!')
-            break
+        # key = cv2.waitKey(1)
+        # if key == 27 or key == ord('q'):
+        #     print('[i] ==> Interrupted by user!')
+        #     break
 
     cap.release()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
     print('==> All done!')
     print('***********************************************************')

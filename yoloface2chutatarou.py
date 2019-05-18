@@ -83,9 +83,9 @@ def _main():
             sys.exit(1)
         cap = cv2.VideoCapture(args.video)
         output_file = args.video[:-4].rsplit('/')[-1] + '_yoloface.avi'
-    else:
-        # Get data from the camera
-        cap = cv2.VideoCapture(args.src)
+    # else:
+    #     # Get data from the camera
+    #     cap = cv2.VideoCapture(args.src)
 
     # Get the video writer initialized to save the output video
     # if not args.image:
@@ -100,15 +100,15 @@ def _main():
         has_frame, frame = cap.read()
 
         # Stop the program if reached end of video
-        # if not has_frame:
-        #     print('[i] ==> Done processing!!!')
-        #     print('[i] ==> Output file is stored at', os.path.join(args.output_dir, output_file))
-        #     cv2.waitKey(1000)
-        #     break
+        if not has_frame:
+            print('[i] ==> Done processing!!!')
+            print('[i] ==> Output file is stored at', os.path.join(args.output_dir, output_file))
+            cv2.waitKey(1000)
+            break
 
         # qキーを押すとループ終了
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        # if cv2.waitKey(1) & 0xFF == ord('q'):
+        #     break
 
         # Create a 4D blob from a frame.
         blob = cv2.dnn.blobFromImage(frame, 1 / 255, (IMG_WIDTH, IMG_HEIGHT),
@@ -137,7 +137,7 @@ def _main():
 
         # for (i, (txt, val)) in enumerate(info):
         #     text = '{}: {}'.format(txt, val)
-        #     cv2.putText(frame, text, (10, (i * 20) + 20),
+        #     cv2.putText(frame, text, (10, (i * 20) + 20)
         #                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, COLOR_RED, 2)
 
         # Save the output video to file

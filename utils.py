@@ -49,6 +49,11 @@ def get_outputs_names(net):
 
 
 # Draw the predicted bounding box
+churatarou_img = cv2.imread('./assets/churatarou.jpg')
+def draw_churatarou(frame, conf, left, top, right, bottom):
+    resize_img = cv2.resize(churatarou_img, (bottom -  top, right - left))
+    frame[top:bottom, left:right, :] = resize_img
+
 def draw_predict(frame, conf, left, top, right, bottom):
     # Draw a bounding box.
     cv2.rectangle(frame, (left, top), (right, bottom), COLOR_YELLOW, 2)
@@ -102,9 +107,9 @@ def post_process(frame, outs, conf_threshold, nms_threshold):
         height = box[3]
         final_boxes.append(box)
         left, top, right, bottom = refined_box(left, top, width, height)
-        # draw_predict(frame, confidences[i], left, top, left + width,
-        #              top + height)
-        draw_predict(frame, confidences[i], left, top, right, bottom)
+        # draw_predict(frame, confidences[i], left, top, right, bottom)
+        draw_churatarou(frame, confidences[i], left, top, right, bottom)
+
     return final_boxes
 
 
